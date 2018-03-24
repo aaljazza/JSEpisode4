@@ -54,8 +54,8 @@ export const createNewTask = function(taskString) {
 
   // COMPLETE ME!
   // Add handlers for the edit button and checkbox
-  // editButton.onclick = ...
-  // checkBox.onchange = ...
+  editButton.onclick = editTask;
+  checkBox.onchange = completeTask;
 
   // Append each element to the listItem
   listItem.appendChild(checkBox);
@@ -75,6 +75,12 @@ export const createNewTask = function(taskString) {
  *****************************************************/
 export const addTask = function() {
   // Complete me!
+  let taskString = taskInput.value || "New Task";
+  let newTask = createNewTask(taskString);
+
+  todoList.appendChild(newTask);
+
+  taskInput.value = "";
 };
 
 /*****************************************************************
@@ -94,7 +100,19 @@ export const editTask = function() {
   // get the current list item which is the parent
   // node of the current button (`this`)
   let listItem = this.parentNode;
-  // Complete me!
+  let input = listItem.querySelector("input[type=text]");
+  let label = listItem.querySelector("label");
+  let button = this;
+
+  if (listItem.classList.contains("edit-mode")) {
+    label.innerHTML = input.value;
+    button.innerHTML = "Edit";
+  } else {
+    input.value = label.innerHTML;
+    button.innerHTML = "Save";
+  }
+
+  listItem.classList.toggle("edit-mode");
 };
 
 /***********************************
@@ -104,4 +122,6 @@ export const editTask = function() {
  ***********************************/
 export const completeTask = function() {
   // Complete me!
+  let listItem = this.parentNode;
+  todoList.removeChild(listItem);
 };

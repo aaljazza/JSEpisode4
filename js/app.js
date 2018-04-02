@@ -66,12 +66,12 @@ function createNewTask(taskString) {
 * - Reset the value of taskInput
 *****************************************************/
 function addTask() {
-  let taskString = taskInput.value || "New Task";
+	let taskString = taskInput.value || "New Task";
 	let newTask = createNewTask(taskString);
 
-  todoList.appendChild(newTask);
+	todoList.appendChild(newTask);
 
-  taskInput.value = '';
+	taskInput.value = '';
 };
 
 

@@ -2,7 +2,6 @@ jest.unmock("../app");
 
 import "jest-dom/extend-expect";
 import * as app from "../app";
-// app.editTask = jest.fn();
 
 document.body.innerHTML =
   '<label for="new-task">Add Item</label>' +
@@ -32,7 +31,7 @@ describe("createNewTask()", () => {
     it("has an 'edit' button", () => {
       const editButton = newTask.querySelector("button");
       expect(editButton).not.toBeNull();
-      expect(editButton.innerText).toBe("Edit");
+      expect(editButton.innerHTML).toBe("Edit");
       expect(editButton).toHaveClass("edit");
     });
 
@@ -58,11 +57,11 @@ describe("createNewTask()", () => {
     it("has a label which shows the correct task", () => {
       const label = newTask.querySelector("label");
       expect(label).not.toBeNull();
-      expect(label.innerText).toBe("pass the tests");
+      expect(label.innerHTML).toBe("pass the tests");
 
       const otherTask = app.createNewTask("some other task");
       const otherLabel = otherTask.querySelector("label");
-      expect(otherLabel.innerText).toBe("some other task");
+      expect(otherLabel.innerHTML).toBe("some other task");
     });
   });
 });

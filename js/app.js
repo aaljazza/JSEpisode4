@@ -48,9 +48,9 @@ export const createNewTask = function(taskString) {
 
   checkBox.type = "checkbox"; // Make this input a checkbox
   editInput.type = "text"; // Make this input a text field
-  editButton.innerText = "Edit"; // Change the text on the button
+  editButton.innerHTML = "Edit"; // Change the text on the button
   editButton.className = "edit"; // Give the button a .edit class
-  label.innerText = taskString; // Change the label text to the new taskString
+  label.innerHTML = taskString; // Change the label text to the new taskString
 
   // COMPLETE ME!
   // Add handlers for the edit button and checkbox

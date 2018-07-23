@@ -32,9 +32,7 @@ app.setup();
 describe("completeTask()", () => {
   it("removes the task from the todo list", () => {
     const listItems = document.getElementsByTagName("li");
-    listItems[1]
-      .querySelector("input[type=checkbox]")
-      .dispatchEvent(new MouseEvent("click"));
+    app.completeTask.bind(listItems[1].querySelector("input[type=checkbox]"))();
     expect(listItems.length).toBe(2);
 
     const itemLabels = Array.from(listItems).map(

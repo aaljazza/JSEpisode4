@@ -1,29 +1,21 @@
+jest.unmock("../app");
+
 import "jest-dom/extend-expect";
+import * as app from "../app";
+// app.editTask = jest.fn();
 
 document.body.innerHTML =
   '<label for="new-task">Add Item</label>' +
   '<input id="new-task" type="text">' +
   '<button id="add-button">Add</button>' +
   '<ul id="todo-list">' +
-  "<li>" +
-  '<input type="checkbox">' +
-  "<label>Pay Bills</label>" +
-  '<input type="text">' +
-  '<button class="edit">Edit</button>' +
-  "</li>" +
-  '<li class="editMode">' +
-  '<input type="checkbox">' +
-  "<label>Go Shopping</label>" +
-  '<input type="text" value="Go Shopping">' +
-  '<button class="edit">Save</button>' +
-  "</li>" +
   "</ul>";
+app.setup();
 
-const { createNewTask } = require("../app");
 let newTask;
 
 beforeEach(() => {
-  newTask = createNewTask("pass the tests");
+  newTask = app.createNewTask("pass the tests");
 });
 
 describe("createNewTask()", () => {
@@ -31,12 +23,7 @@ describe("createNewTask()", () => {
     expect(newTask).toBeInstanceOf(HTMLLIElement);
   });
 
-  describe("the item", () => {
-    it("has a checkbox", () => {
-      const checkbox = newTask.querySelector("input[type=checkbox]");
-      expect(checkbox).not.toBeNull();
-    });
-
+  describe("The List Item", () => {
     it("has a text input field", () => {
       const textInput = newTask.querySelector("input[type=text]");
       expect(textInput).not.toBeNull();
@@ -49,12 +36,31 @@ describe("createNewTask()", () => {
       expect(editButton).toHaveClass("edit");
     });
 
+    describe("The Edit Button", () => {
+      it("calls editTask when clicked", () => {
+        const editButton = newTask.querySelector("button");
+        expect(editButton.onclick).toBe(app.editTask);
+      });
+    });
+
+    it("has a checkbox", () => {
+      const checkbox = newTask.querySelector("input[type=checkbox]");
+      expect(checkbox).not.toBeNull();
+    });
+
+    describe("The Checkbox", () => {
+      it("calls completeTask when checked", () => {
+        const checkbox = newTask.querySelector("input[type=checkbox]");
+        expect(checkbox.onchange).toBe(app.completeTask);
+      });
+    });
+
     it("has a label which shows the correct task", () => {
       const label = newTask.querySelector("label");
       expect(label).not.toBeNull();
       expect(label.innerText).toBe("pass the tests");
 
-      const otherTask = createNewTask("some other task");
+      const otherTask = app.createNewTask("some other task");
       const otherLabel = otherTask.querySelector("label");
       expect(otherLabel.innerText).toBe("some other task");
     });

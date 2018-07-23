@@ -6,7 +6,7 @@ let taskInput;
 let addButton;
 let todoList;
 
-export const setup = function() {
+const setup = function() {
   // Retrieve the high-level elements on the page:
   // - The new task input field
   // - The add new task button
@@ -39,7 +39,7 @@ export const setup = function() {
  *
  * createNewTask(itemString);
  ********************************************/
-export const createNewTask = function(taskString) {
+const createNewTask = function(taskString) {
   let listItem = document.createElement("li"); // Create List Item
   let checkBox = document.createElement("input"); // Input (checkbox)
   let label = document.createElement("label"); // Label
@@ -72,7 +72,7 @@ export const createNewTask = function(taskString) {
  * - Append the new task to the todoList
  * - Reset the value of taskInput
  *****************************************************/
-export const addTask = function() {
+const addTask = function() {
   let taskString = taskInput.value || "New Task";
   let newTask = createNewTask(taskString);
 
@@ -94,7 +94,7 @@ export const addTask = function() {
  *       - set the button text to 'Save'
  * - Toggle edit mode
  *****************************************************************/
-export const editTask = function() {
+const editTask = function() {
   // get the current list item which is the parent
   // node of the current button (`this`)
   let listItem = this.parentNode;
@@ -118,7 +118,15 @@ export const editTask = function() {
  * - Get the current list item
  * - Remove the item from todoList
  ***********************************/
-export const completeTask = function() {
+const completeTask = function() {
   let listItem = this.parentNode;
   todoList.removeChild(listItem);
+};
+
+module.exports = {
+  setup,
+  createNewTask,
+  addTask,
+  editTask,
+  completeTask
 };

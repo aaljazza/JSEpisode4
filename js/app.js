@@ -2,24 +2,34 @@
 // - The new task input field
 // - The add new task button
 // - The to-do list iteslf
-const taskInput = document.getElementById("new-task");
-const addButton = document.getElementById("add-button");
-const todoList = document.getElementById("todo-list");
+let taskInput;
+let addButton;
+let todoList;
 
-/****************************************
- * The following loop adds event handlers
- * to the already existing tasks
- * DO NOT EDIT THIS CODE!!!
- ****************************************/
-Array.from(todoList.children).forEach(function(listItem) {
-  let checkBox = listItem.querySelector("input[type=checkbox]"); //
-  let editButton = listItem.querySelector("button.edit"); //
-  editButton.onclick = editTask; // Bind editTask to edit button
-  checkBox.onchange = completeTask;
-});
+export const setup = function() {
+  // Retrieve the high-level elements on the page:
+  // - The new task input field
+  // - The add new task button
+  // - The to-do list iteslf
+  taskInput = document.getElementById("new-task");
+  addButton = document.getElementById("add-button");
+  todoList = document.getElementById("todo-list");
 
-// Add a click handler to the addButton
-addButton.onclick = addTask;
+  /****************************************
+   * The following loop adds event handlers
+   * to the already existing tasks
+   * DO NOT EDIT THIS CODE!!!
+   ****************************************/
+  Array.from(todoList.children).forEach(function(listItem) {
+    let checkBox = listItem.querySelector("input[type=checkbox]"); //
+    let editButton = listItem.querySelector("button.edit"); //
+    editButton.onclick = editTask; // Bind editTask to edit button
+    checkBox.onchange = completeTask;
+  });
+
+  // Add a click handler to the addButton
+  addButton.onclick = addTask;
+};
 
 /*******************************************
  * Create a new to-do item:
@@ -29,7 +39,7 @@ addButton.onclick = addTask;
  *
  * createNewTask(itemString);
  ********************************************/
-function createNewTask(taskString) {
+export const createNewTask = function(taskString) {
   let listItem = document.createElement("li"); // Create List Item
   let checkBox = document.createElement("input"); // Input (checkbox)
   let label = document.createElement("label"); // Label
@@ -54,7 +64,7 @@ function createNewTask(taskString) {
   listItem.appendChild(editButton);
 
   return listItem;
-}
+};
 
 /*****************************************************
  * Add a new task to the list:
@@ -63,9 +73,9 @@ function createNewTask(taskString) {
  * - Append the new task to the todoList
  * - Reset the value of taskInput
  *****************************************************/
-function addTask() {
+export const addTask = function() {
   // Complete me!
-}
+};
 
 /*****************************************************************
  * Edit a task:
@@ -80,25 +90,19 @@ function addTask() {
  *       - set the button text to 'Save'
  * - Toggle edit mode
  *****************************************************************/
-function editTask() {
+export const editTask = function() {
   // get the current list item which is the parent
   // node of the current button (`this`)
+  console.log(this);
   let listItem = this.parentNode;
   // Complete me!
-}
+};
 
 /***********************************
  * Mark a task as completed:
  * - Get the current list item
  * - Remove the item from todoList
  ***********************************/
-function completeTask() {
+export const completeTask = function() {
   // Complete me!
-}
-
-module.exports = {
-  createNewTask,
-  addTask,
-  editTask,
-  completeTask
 };

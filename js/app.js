@@ -55,10 +55,9 @@ const createNewTask = function(taskString) {
   editButton.className = "edit"; // Give the button a .edit class
   label.innerHTML = taskString; // Change the label text to the new taskString
 
-  // COMPLETE ME!
   // Add handlers for the edit button and checkbox
-  // editButton.onclick = ...
-  // checkBox.onchange = ...
+  editButton.onclick = editTask;
+  checkBox.onchange = completeTask;
 
   // Append each element to the listItem
   listItem.appendChild(checkBox);
@@ -77,7 +76,12 @@ const createNewTask = function(taskString) {
  * - Reset the value of taskInput
  *****************************************************/
 const addTask = function() {
-  // Complete me!
+  let taskString = taskInput.value || "New Task";
+  let newTask = createNewTask(taskString);
+
+  todoList.appendChild(newTask);
+
+  taskInput.value = "";
 };
 
 /*****************************************************************
@@ -97,7 +101,19 @@ const editTask = function() {
   // get the current list item which is the parent
   // node of the current button (`this`)
   let listItem = this.parentNode;
-  // Complete me!
+  let input = listItem.querySelector("input[type=text]");
+  let label = listItem.querySelector("label");
+  let button = this;
+
+  if (listItem.classList.contains("edit-mode")) {
+    label.innerHTML = input.value;
+    button.innerHTML = "Edit";
+  } else {
+    input.value = label.innerHTML;
+    button.innerHTML = "Save";
+  }
+
+  listItem.classList.toggle("edit-mode");
 };
 
 /***********************************
@@ -106,7 +122,8 @@ const editTask = function() {
  * - Remove the item from todoList
  ***********************************/
 const completeTask = function() {
-  // Complete me!
+  let listItem = this.parentNode;
+  todoList.removeChild(listItem);
 };
 
 module.exports = {

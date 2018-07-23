@@ -30,7 +30,7 @@ document.body.innerHTML =
 app.setup();
 
 describe("completeTask()", () => {
-  it("removes the task from the to do list", () => {
+  it("removes the task from the todo list", () => {
     const listItems = document.getElementsByTagName("li");
     listItems[1]
       .querySelector("input[type=checkbox]")

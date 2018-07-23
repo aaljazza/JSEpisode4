@@ -13,7 +13,7 @@ beforeEach(() => {
     '<input type="checkbox">' +
     "<label></label>" +
     '<input type="text" value="Task 1">' +
-    '<button class="edit">Edit</button>' +
+    '<button class="edit">Save</button>' +
     "</li>" +
     "<li>" +
     '<input type="checkbox">' +

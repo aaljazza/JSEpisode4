@@ -93,7 +93,6 @@ export const addTask = function() {
 export const editTask = function() {
   // get the current list item which is the parent
   // node of the current button (`this`)
-  console.log(this);
   let listItem = this.parentNode;
   // Complete me!
 };

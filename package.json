@@ -1,5 +1,5 @@
 {
-  "name": "JSEpisode1",
+  "name": "JSEpisode4",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -11,7 +11,8 @@
     "jest-dom": "^1.10.0"
   },
   "scripts": {
-    "start": "node_modules/browserify/bin/cmd.js js/app.js js/setup.js -o build/bundle.js && open index.html",
+    "build": "node_modules/browserify/bin/cmd.js js/app.js js/setup.js -o build/bundle.js",
+    "start": "yarn build && open index.html",
     "test": "jest --verbose"
   }
 }

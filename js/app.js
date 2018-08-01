@@ -1,25 +1,28 @@
-// Retrieve the high-level elements on the page:
-// - The new task input field
-// - The add new task button
-// - The to-do list iteslf
+/*****************************************
+ * The high-level elements on the page:
+ *  - The new task input field
+ *  - The add new task button
+ *  - The to-do list iteslf
+ ****************************************/
 let taskInput;
 let addButton;
 let todoList;
 
+
+/***************************************************************
+ * Setup Function:
+ * - grabs the high level elements and stores them in variables
+ * - adds event handlers to already existing tasks
+ * 
+ * DO NOT EDIT THIS FUNCTION!!!
+ ***************************************************************/
 const setup = function() {
-  // Retrieve the high-level elements on the page:
-  // - The new task input field
-  // - The add new task button
-  // - The to-do list iteslf
+  // Retrieve high-level elements:
   taskInput = document.getElementById("new-task");
   addButton = document.getElementById("add-button");
   todoList = document.getElementById("todo-list");
 
-  /****************************************
-   * The following loop adds event handlers
-   * to the already existing tasks
-   * DO NOT EDIT THIS CODE!!!
-   ****************************************/
+  // Add event handlers to existing tasks
   Array.from(todoList.children).forEach(function(listItem) {
     let checkBox = listItem.querySelector("input[type=checkbox]"); //
     let editButton = listItem.querySelector("button.edit"); //
